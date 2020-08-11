@@ -24,9 +24,6 @@ public class Product {
 	@NotNull(message = "Product price is required.")
 	private Double price;
 
-	@NotNull(message = "Category is required")
-	private CategoryENUM category;
-
 	private String pictureUrl;
 
 	public Product() {
@@ -35,13 +32,11 @@ public class Product {
 
 	public Product(@NotNull(message = "Product name is required.") String name,
 			@NotNull(message = "Product description is required.") String productDescription,
-			@NotNull(message = "Product price is required.") Double price,
-			@NotNull(message = "Category is required") CategoryENUM category, String pictureUrl) {
+			@NotNull(message = "Product price is required.") Double price, String pictureUrl) {
 		super();
 		this.name = name;
 		this.productDescription = productDescription;
 		this.price = price;
-		this.category = category;
 		this.pictureUrl = pictureUrl;
 	}
 
@@ -75,14 +70,6 @@ public class Product {
 
 	public void setPrice(Double price) {
 		this.price = price;
-	}
-
-	public CategoryENUM getCategory() {
-		return category;
-	}
-
-	public void setCategory(CategoryENUM category) {
-		this.category = category;
 	}
 
 	public String getPictureUrl() {

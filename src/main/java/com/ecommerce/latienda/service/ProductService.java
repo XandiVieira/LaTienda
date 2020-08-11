@@ -24,14 +24,6 @@ public class ProductService {
 	public Product getProduct(long id) {
 		return productRepository.findById(id).get();
 	}
-	
-	/*public Product getProduct(String name) {
-		return productRepository.findByName(id).get();
-	}
-	
-	public Product getProduct(String category) {
-		return productRepository.findByCategory(category).get();
-	}*/
 
 	public Product save(Product product) {
 		return productRepository.save(product);

@@ -1,6 +1,5 @@
 package com.ecommerce.latienda.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,15 +52,12 @@ public class ProductController {
 
 		Product product = productService.getProduct(id);
 
-		List<Integer> qtyList = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8);
-		modelMap.addAttribute("qtyList", qtyList);
-		modelMap.addAttribute("qty", 1);
-		modelMap.addAttribute("product", product);
 		int qty = 0;
 		for (Integer size : shoppingCartService.getProductsInCart().values()) {
 			qty += size;
 		}
 
+		modelMap.addAttribute("product", product);
 		modelMap.addAttribute("qty", qty);
 		modelMap.addAttribute("total", String.format("%.2f", shoppingCartService.getTotal()));
 
