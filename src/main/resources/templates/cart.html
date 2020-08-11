@@ -1,0 +1,83 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<head>
+<link th:href="@{/css/bootstrap.css}" href="css/bootstrap.css"
+	rel="stylesheet">
+<link th:href="@{/css/style.css}" href="css/style.css" rel="stylesheet">
+</head>
+<body>
+
+	<div th:replace="/header/header :: navbar" />
+
+	<div class="container">
+		<span class="page_title">Meu Carrinho</span>
+
+		<div class="row panel-body">
+			<h2 class="col-md-11" th:inline="text">Total: R$[[${total}]]</h2>
+			<a href="#" class="col-md-1">
+				<button type="button" class="btn btn-danger">Finalizar
+					Compra</button>
+			</a>
+			<p>
+				<a class="col-md-11" th:inline="text" th:href="@{/cart/removeProducts}">Limpar
+					carrinho</a>
+			</p>
+		</div>
+
+		<div class="logo">
+			<a th:href="@{/products}"><img src="images/logo.png" alt=""
+				style="width: 100px; height: 100px" /></a>
+		</div>
+		
+		<ol class="breadcrumb">
+			<li><a href="/products">Home</a></li>
+			<li class="active">Todos Produtos</li>
+		</ol>
+
+		<div class="panel-default well"
+			th:each="product : ${products.entrySet()}">
+			<div class="panel-heading">
+				<h1 class="sofa-grid">
+					<a th:text="${product.getKey().name}"
+						th:href="@{'/products/' + ${product.getKey().id}}">Name</a>
+				</h1>
+				<div class="product-img b-link-stripe b-animate-go  thickbox">
+					<img style="height: 230px; width: 250px"
+						th:src="${product.getKey().pictureUrl}" class="img-responsive"
+						alt="" />
+				</div>
+				<h3 th:text="${product.getKey().productDescription}" class="sofa-grid">Description</h3>
+			</div>
+			<div class="row panel-body">
+				<div th:inline="text" class="col-md-2">Preço unitário:
+					R$[[${product.getKey().price}]]</div>
+				<div th:inline="text" class="col-md-9">Quantidade:
+					[[${product.getValue()}]]</div>
+				<br /> <a
+					th:href="@{'/cart/removeProduct/{id}'(id=${product.getKey().id})}"
+					class="col-md-1">
+					<button type="button" class="btn btn-primary">Remover</button>
+				</a> <a th:href="@{'/cart/addProduct/{id}'(id=${product.getKey().id})}"
+					class="col-md-1">
+					<button type="button" class="btn btn-primary">Adicionar</button>
+				</a>
+			</div>
+			<br></br>
+		</div>
+
+		<div class="row panel-body">
+			<h2 class="col-md-11" th:inline="text">Total: R$[[${total}]]</h2>
+			<a href="#" class="col-md-1">
+				<button type="button" class="btn btn-danger">Finalizar
+					Compra</button>
+			</a>
+		</div>
+	</div>
+	<br />
+	<br />
+	<div th:replace="/footer/footer :: footer" />
+</body>
+</html>

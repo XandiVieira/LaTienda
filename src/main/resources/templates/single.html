@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<link th:href="@{/css/bootstrap.css}" href="css/bootstrap.css"
+	rel="stylesheet">
+<link th:href="@{/css/style.css}" href="css/style.css" rel="stylesheet">
+</head>
+<body>
+	<!--cart-->
+	<div th:replace="/header/header :: navbar" />
+	<div class="header_top">
+		<div class="container">
+			<div class="logo">
+				<a th:href="@{/products}"><img src="/images/logo.png" alt=""
+					style="width: 100px; height: 100px" /></a>
+			</div>
+			<div class="header_right">
+				<div class="cart box_1">
+					<a th:href="@{/cart/}">
+						<h3>
+							<span class="simpleCart_total">R$</span> <span th:text="${total}">
+							</span> (<span id="simpleCart_quantity" th:text="${qty}"
+								class="simpleCart_quantity"></span> itens)
+						</h3> <img src="/images/bag.png" alt="">
+					</a>
+					<p>
+						<a th:href="@{/cart/removeProducts}" class="simpleCart_empty">Limpar
+							carrinho</a>
+					</p>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+
+		<ol class="breadcrumb">
+			<li><a href="/products">Home</a></li>
+			<li class="active">Todos Produtos</li>
+		</ol>
+	</div>
+	
+	<div class="col-md-16 product-model-sec">
+		<div class="product-grid love-grid" style="margin-left: 50px">
+			<div class="product-img b-link-stripe b-animate-go  thickbox">
+				<img style="height: 230px; width: 250px"
+					th:src="${product.pictureUrl}" class="img-responsive" alt="" />
+			</div>
+			<div class="product-info simpleCart_shelfItem">
+				<div class="product-info-cust">
+					<h4 th:text="${product.name}"></h4>
+					<span>R$<span class="item_price" th:text="${product.price}"></span></span><br />
+					<span class="item_price" th:text="${product.productDescription}"></span><br />
+					<a th:href="@{'/cart/addProduct/{id}'(id=${product.id})}"
+						class="item_add items">Comprar</a>
+				</div>
+			</div>
+		</div>
+		<div th:replace="/footer/footer :: footer" />
+	</div>
+</body>
+</html>
